@@ -223,8 +223,7 @@ const CodeEditor = () => {
         ydocRef.current = ydoc;
 
         const provider = new HocuspocusProvider({
-            // url: `${import.meta.env.VITE_BACKEND_WS}`,
-            url: 'ws://localhost:1234',
+            url: `${import.meta.env.VITE_BACKEND_WS}`,
             name: documentName,
             document: ydoc,
         });
