@@ -26,7 +26,7 @@ function parseDocumentName(docName) {
 }
 
 const server = new Server({
-  port: 1234,
+  port: process.env.PORT,
   name: 'collab-server',
   debounce: 200,
 
@@ -158,7 +158,7 @@ setInterval(async () => {
     const hourAgo = new Date(Date.now() - 60 * 60 * 1000)
     const filesDeleted = await File.deleteMany({
       updatedAt: { $lt: hourAgo },
-      $or: [ { roomId: { $exists: false } }, { roomId: null } ]
+      $or: [{ roomId: { $exists: false } }, { roomId: null }]
     })
     if (filesDeleted.deletedCount) console.log(`🧹 Cleaned up ${filesDeleted.deletedCount} orphaned files`)
   } catch (err) {
